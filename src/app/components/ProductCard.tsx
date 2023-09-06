@@ -19,7 +19,7 @@ const ProductCard = ({
 				-&gt;
 			</span>
 
-			<h2 className={`mb-3 h-24 text-xl font-semibold`}>{name}</h2>
+			<h3 className={`mb-3 h-24 text-xl font-semibold`}>{name}</h3>
 
 			<Image alt={name} src={imageUrl} width={300} height={300} priority={true} />
 
