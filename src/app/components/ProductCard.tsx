@@ -1,6 +1,18 @@
 import Image from "next/image";
 
-const ProductCard = ({ name, description, price, imageUrl, slug }: { name: string, description: string, price: string, imageUrl:string, slug:string }) => (
+const ProductCard = ({
+	name,
+	description,
+	price,
+	imageUrl,
+	slug,
+}: {
+	name: string;
+	description: string;
+	price: string;
+	imageUrl: string;
+	slug: string;
+}) => (
 	<li className="group mx-2 rounded-lg border  px-2 py-4 shadow-2xl transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
 		<a href={`/products/${slug}`}>
 			<span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">

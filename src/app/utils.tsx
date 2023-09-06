@@ -1,5 +1,3 @@
-
-
 export const products = [
 	{
 		name: "Intelligent Bronze Towels",
