@@ -1,11 +1,12 @@
 "use client";
+import { type UrlObject } from "url";
 import classNames from "classnames";
 import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { isLinkActive } from "../utils";
 
-const ActiveLink = ({
+const ActiveLink = <T extends string>({
 	children,
 	href,
 	className = "border-b-2 border-blue-50",
@@ -13,7 +14,7 @@ const ActiveLink = ({
 	exact = false,
 }: {
 	children: React.ReactNode;
-	href: Route;
+	href: Route<T> | UrlObject;
 	className?: string;
 	activeClassName?: string;
 	exact?: boolean;
