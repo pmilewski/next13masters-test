@@ -10,14 +10,16 @@ const ActiveLink = ({
 	href,
 	className = "border-b-2 border-blue-50",
 	activeClassName = "border-b-4 border-blue-400",
+	exact = false,
 }: {
 	children: React.ReactNode;
 	href: Route;
 	className?: string;
 	activeClassName?: string;
+	exact?: boolean;
 }) => {
 	const pathname = usePathname();
-	const isActive = isLinkActive(pathname, href);
+	const isActive = isLinkActive(pathname, href, exact);
 
 	return (
 		<Link
