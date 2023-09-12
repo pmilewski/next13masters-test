@@ -15,7 +15,7 @@ export const generateMetadata = async ({
 	params,
 }: {
 	params: { productId: string };
-	}): Promise<Metadata> => {
+}): Promise<Metadata> => {
 	const product = await getProductById(params.productId);
 	return {
 		title: `${product.name} - Sklep internetowy`,
@@ -36,10 +36,16 @@ export default async function SingleProductPage({
 	const product: ProductItemType = await getProductById(productId);
 	return (
 		<>
-			<article className="w-75">
-				<ProductCoverImage {...product.coverImage} />
-				<ProductListItemDescription name={product.name} price={product.price} />
-				{product.description}
+			<article className="grid grid-cols-3 gap-4">
+				<div className="">
+					<ProductCoverImage {...product.coverImage} />
+				</div>
+				<div className="col-span-2 ">
+					<div className="mb-10 text-2xl">
+						<ProductListItemDescription name={product.name} price={product.price} textSize="3xl" />
+					</div>
+					{product.description}
+				</div>
 			</article>
 			<aside>
 				<Suspense fallback="Ładowanie...">
