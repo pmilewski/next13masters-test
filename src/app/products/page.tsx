@@ -1,9 +1,16 @@
-import ProductList from "./../components/ProductsList";
+import { getProductsList } from "@/api/products";
+import { ProductListPagination } from "@/ui/molecules/ProductListPagination";
+import { ProductList } from "@/ui/organisms/ProductsList";
 
-export default function Home() {
+export default async function ProductsPage({ pageNumber = "1" }: { pageNumber: string }) {
+	const take = 20;
+	const products = await getProductsList(Number(pageNumber), take);
+	const productsOnPageCount = products.length;
+	const isLastPage = productsOnPageCount < take;
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<ProductList />
-		</main>
+		<>
+			<ProductList products={products} />
+			<ProductListPagination currentPage={pageNumber} isLastPage={isLastPage} />
+		</>
 	);
 }
