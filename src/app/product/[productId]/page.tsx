@@ -44,7 +44,7 @@ export default async function SingleProductPage({
 					<div className="mb-10 text-2xl">
 						<ProductListItemDescription name={product.name} price={product.price} textSize="3xl" />
 					</div>
-					{product.description}
+					<p>{product.description}</p>
 				</div>
 			</article>
 			<aside>

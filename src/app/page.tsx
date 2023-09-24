@@ -1,7 +1,7 @@
-import Link from "next/link";
+import ProductsPage from './products/page'
 
 export default function HomePage() {
 	return (
-			<Link href="/products">Products</Link>
+			<ProductsPage pageNumber='1' />
 	);
 }

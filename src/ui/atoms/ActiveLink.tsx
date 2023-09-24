@@ -29,6 +29,7 @@ const ActiveLink = <T extends string>({
 				isActive ? activeClassName : className,
 			)}
 			href={href}
+			aria-current={isActive ? "page" : undefined}
 		>
 			{children}
 		</Link>
