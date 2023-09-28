@@ -6,7 +6,7 @@ const nextConfig = {
 		mdxRs: true,
 	},
 	images: {
-		domains: ["naszsklep-api.vercel.app"],
+		domains: ["media.graphassets.com"],
 	},
 };
 

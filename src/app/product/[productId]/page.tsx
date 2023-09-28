@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getProductById } from "@/api/products";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
+import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
 import { SuggestedProductsList } from "@/ui/organisms/SuggestedProductsList";
-import type { ProductItemType } from "@/ui/types";
 
 // export const generateStaticParams = async () => {
 // 	const products = await getProductsList()
@@ -17,13 +17,14 @@ export const generateMetadata = async ({
 	params: { productId: string };
 }): Promise<Metadata> => {
 	const product = await getProductById(params.productId);
+	if (!product) notFound();
 	return {
 		title: `${product.name} - Sklep internetowy`,
 		description: product.description,
 		openGraph: {
 			title: `${product.name} - Sklep internetowy`,
 			description: product.description,
-			images: [product.coverImage.src],
+			images: product.images.map((image) => image.url),
 		},
 	};
 };
@@ -33,16 +34,22 @@ export default async function SingleProductPage({
 }: {
 	params: { productId: string };
 }) {
-	const product: ProductItemType = await getProductById(productId);
+	const product = await getProductById(productId);
+	if (!product) notFound();
 	return (
 		<>
-			<article className="grid grid-cols-3 gap-4">
+			<article className="grid grid-cols-3 gap-4" data-testid="single-product">
 				<div className="">
-					<ProductCoverImage {...product.coverImage} />
+					<ProductImage product={product} />
 				</div>
 				<div className="col-span-2 ">
 					<div className="mb-10 text-2xl">
-						<ProductListItemDescription name={product.name} price={product.price} textSize="3xl" />
+						<ProductListItemDescription
+							name={product.name}
+							category={product.categories[0]?.name}
+							price={product.price}
+							textSize="3xl"
+						/>
 					</div>
 					<p>{product.description}</p>
 				</div>
