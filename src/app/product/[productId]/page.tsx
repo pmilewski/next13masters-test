@@ -36,7 +36,7 @@ export default async function SingleProductPage({
 	const product: ProductItemType = await getProductById(productId);
 	return (
 		<>
-			<article className="grid grid-cols-3 gap-4">
+			<article className="grid grid-cols-3 gap-4" data-testid="single-product">
 				<div className="">
 					<ProductCoverImage {...product.coverImage} />
 				</div>
