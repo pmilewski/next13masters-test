@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ShoppingCart } from "lucide-react";
 import { ActiveLink } from "../atoms/ActiveLink";
 
 const Header = () => {
@@ -7,6 +9,11 @@ const Header = () => {
 				<ActiveLink href="/">Home</ActiveLink>
 				<ActiveLink href="/products">All</ActiveLink>
 			</nav>
+			<div>
+				<Link href="/cart">
+					<ShoppingCart />
+				</Link>
+			</div>
 		</header>
 	);
 };
